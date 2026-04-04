@@ -1,6 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@primecred/SITE_NAME",
+  "buildCommand": "cd ../.. && TURBO_TELEMETRY_DISABLED=1 pnpm turbo run build --filter=@primecred/SITE_NAME",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
   "outputDirectory": ".next",
   "regions": ["iad1"],
