@@ -1,0 +1,108 @@
+name: Deploy Changed Sites
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Step 1: Detect which sites changed ──────────────────────────────────────
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      sites: ${{ steps.filter.outputs.changes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          # Each site gets one entry here. The create-site.sh script appends
+          # new entries automatically when you scaffold a new site.
+          # Pattern: changes in the site dir OR any shared package trigger a deploy.
+          filters: |
+            # --- GENERATED SITE ENTRIES (do not remove this comment) ---
+
+  # ── Step 2: Deploy each changed site in parallel ────────────────────────────
+  deploy:
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.sites != '[]' && needs.detect-changes.outputs.sites != '' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false   # One site failing NEVER cancels others
+      matrix:
+        site: ${{ fromJson(needs.detect-changes.outputs.sites) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
+
+      # Pull Vercel project settings and env vars
+      - name: Pull Vercel environment
+        working-directory: sites/${{ matrix.site }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets[format('VERCEL_PROJECT_ID_{0}', matrix.site)] }}
+        run: |
+          SECRET_KEY=$(echo "${{ matrix.site }}" | tr '[:lower:]-' '[:upper:]_')
+          vercel pull --yes \
+            --environment=${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }} \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Build via Turbo (respects caching, only rebuilds what changed)
+      - name: Build
+        working-directory: sites/${{ matrix.site }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel build \
+            ${{ github.ref == 'refs/heads/main' && '--prod' || '' }} \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+      # Deploy the pre-built output (fast, atomic, zero-downtime)
+      - name: Deploy to Vercel
+        id: deploy
+        working-directory: sites/${{ matrix.site }}
+        run: |
+          URL=$(vercel deploy --prebuilt \
+            ${{ github.ref == 'refs/heads/main' && '--prod' || '' }} \
+            --token=${{ secrets.VERCEL_TOKEN }})
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          echo "Deployed ${{ matrix.site }} → $URL"
+
+      # Comment on PRs with the preview URL for each site
+      - name: Comment preview URL on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🚀 **${{ matrix.site }}** preview: ${{ steps.deploy.outputs.url }}`
+            })
