@@ -1,19 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { useLang } from '@/contexts/LanguageContext'
 
 const WA_NUMBER = '5522988449328'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
-
-  const navLinks = [
-    { label: 'Início', href: '#inicio' },
-    { label: 'Serviços', href: '#servicos' },
-    { label: 'Como Funciona', href: '#como-funciona' },
-    { label: 'Contato', href: '#contato' },
-  ]
+  const { lang, setLang, T } = useLang()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-sm border-b border-slate-800">
@@ -28,27 +22,45 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
+            {T.header.nav.map((label, i) => (
               <a
-                key={l.href}
-                href={l.href}
+                key={label}
+                href={T.header.navHrefs[i]}
                 className="text-slate-300 hover:text-amber-400 text-sm font-medium transition-colors"
               >
-                {l.label}
+                {label}
               </a>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <a
-            href={`https://wa.me/${WA_NUMBER}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors"
-          >
-            <WhatsAppIcon />
-            Falar no WhatsApp
-          </a>
+          {/* Desktop right side */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Language toggle */}
+            <div className="flex items-center bg-slate-800 rounded-full p-0.5 text-xs font-bold">
+              <button
+                onClick={() => setLang('pt')}
+                className={`px-3 py-1.5 rounded-full transition-colors ${lang === 'pt' ? 'bg-amber-400 text-slate-950' : 'text-slate-400 hover:text-white'}`}
+              >
+                PT
+              </button>
+              <button
+                onClick={() => setLang('en')}
+                className={`px-3 py-1.5 rounded-full transition-colors ${lang === 'en' ? 'bg-amber-400 text-slate-950' : 'text-slate-400 hover:text-white'}`}
+              >
+                EN
+              </button>
+            </div>
+
+            <a
+              href={`https://wa.me/${WA_NUMBER}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+            >
+              <WhatsAppIcon />
+              {T.header.whatsapp}
+            </a>
+          </div>
 
           {/* Mobile toggle */}
           <button
@@ -64,24 +76,44 @@ export default function Header() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-slate-950 border-t border-slate-800 px-4 py-4 flex flex-col gap-4">
-          {navLinks.map((l) => (
+          {T.header.nav.map((label, i) => (
             <a
-              key={l.href}
-              href={l.href}
+              key={label}
+              href={T.header.navHrefs[i]}
               onClick={() => setOpen(false)}
               className="text-slate-300 hover:text-amber-400 text-base font-medium transition-colors"
             >
-              {l.label}
+              {label}
             </a>
           ))}
+
+          {/* Language toggle mobile */}
+          <div className="flex items-center gap-2">
+            <span className="text-slate-500 text-xs">Language:</span>
+            <div className="flex items-center bg-slate-800 rounded-full p-0.5 text-xs font-bold">
+              <button
+                onClick={() => setLang('pt')}
+                className={`px-3 py-1.5 rounded-full transition-colors ${lang === 'pt' ? 'bg-amber-400 text-slate-950' : 'text-slate-400'}`}
+              >
+                PT
+              </button>
+              <button
+                onClick={() => setLang('en')}
+                className={`px-3 py-1.5 rounded-full transition-colors ${lang === 'en' ? 'bg-amber-400 text-slate-950' : 'text-slate-400'}`}
+              >
+                EN
+              </button>
+            </div>
+          </div>
+
           <a
             href={`https://wa.me/${WA_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold px-4 py-3 rounded-full transition-colors mt-2"
+            className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-semibold px-4 py-3 rounded-full transition-colors"
           >
             <WhatsAppIcon />
-            Falar no WhatsApp
+            {T.header.whatsapp}
           </a>
         </div>
       )}
@@ -96,7 +128,6 @@ function WhatsAppIcon() {
     </svg>
   )
 }
-
 function MenuIcon() {
   return (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,7 +135,6 @@ function MenuIcon() {
     </svg>
   )
 }
-
 function XIcon() {
   return (
     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
