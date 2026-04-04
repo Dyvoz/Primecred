@@ -31,6 +31,9 @@ jobs:
           # Pattern: changes in the site dir OR any shared package trigger a deploy.
           filters: |
             # --- GENERATED SITE ENTRIES (do not remove this comment) ---
+            primecred:
+              - 'sites/primecred/**'
+              - 'packages/**'
 
   # ── Step 2: Deploy each changed site in parallel ────────────────────────────
   deploy:
