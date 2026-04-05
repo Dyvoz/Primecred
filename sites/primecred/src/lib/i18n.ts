@@ -6,6 +6,7 @@ export const t = {
       nav: ['Início', 'Serviços', 'Como Funciona', 'Contato'],
       navHrefs: ['#inicio', '#servicos', '#como-funciona', '#contato'],
       whatsapp: 'Falar no WhatsApp',
+      language: 'Idioma:',
     },
     hero: {
       badge: 'Crédito aprovado em até 24 horas',
@@ -134,6 +135,7 @@ export const t = {
       nav: ['Home', 'Services', 'How It Works', 'Contact'],
       navHrefs: ['#inicio', '#servicos', '#como-funciona', '#contato'],
       whatsapp: 'Chat on WhatsApp',
+      language: 'Language:',
     },
     hero: {
       badge: 'Credit approved in up to 24 hours',
