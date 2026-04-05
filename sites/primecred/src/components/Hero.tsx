@@ -27,7 +27,7 @@ export default function Hero() {
             {T.hero.badge}
           </span>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+          <h1 className="font-heading text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
             {T.hero.headline1}{' '}
             <span className="text-amber-400">{T.hero.headline2}</span> {T.hero.headline3}{' '}
             <span className="text-amber-400">{T.hero.headline4}</span> {T.hero.headline5}

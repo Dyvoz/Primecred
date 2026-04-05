@@ -46,7 +46,7 @@ export default function ContactForm() {
           {/* Left */}
           <div>
             <span className="text-amber-400 text-sm font-semibold uppercase tracking-widest">{T.contact.tag}</span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white mb-4">{T.contact.title}</h2>
+            <h2 className="font-heading mt-3 text-3xl md:text-4xl font-bold text-white mb-4">{T.contact.title}</h2>
             <p className="text-slate-400 leading-relaxed mb-8">{T.contact.sub}</p>
 
             <div className="flex flex-col gap-4">

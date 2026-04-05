@@ -15,7 +15,7 @@ export default function WhyUs() {
               key={s.label}
               className="bg-gradient-to-br from-amber-400/10 to-amber-500/5 border border-amber-400/20 rounded-2xl p-6 text-center"
             >
-              <div className="text-4xl font-extrabold text-amber-400 mb-1">{s.value}</div>
+              <div className="font-heading text-4xl font-bold text-amber-400 mb-1">{s.value}</div>
               <div className="text-slate-400 text-sm">{s.label}</div>
             </div>
           ))}
@@ -27,7 +27,7 @@ export default function WhyUs() {
             <span className="text-amber-400 text-sm font-semibold uppercase tracking-widest">
               {T.whyUs.tag}
             </span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white mb-4">
+            <h2 className="font-heading mt-3 text-3xl md:text-4xl font-bold text-white mb-4">
               {T.whyUs.title}
             </h2>
             <p className="text-slate-400 leading-relaxed">

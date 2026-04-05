@@ -12,7 +12,7 @@ export default function Services() {
           <span className="text-amber-400 text-sm font-semibold uppercase tracking-widest">
             {T.services.tag}
           </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white">
+          <h2 className="font-heading mt-3 text-3xl md:text-4xl font-bold text-white">
             {T.services.title}
           </h2>
           <p className="mt-4 text-slate-400 max-w-xl mx-auto">{T.services.sub}</p>
