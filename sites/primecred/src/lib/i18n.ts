@@ -107,6 +107,7 @@ export const t = {
       },
       loanTypes: ['Empréstimo Pessoal', 'Crédito Consignado', 'Refinanciamento', 'Antecipação FGTS', 'Consórcio', 'Outro'],
       loanAmounts: ['Até R$ 5.000', 'R$ 5.000 – R$ 15.000', 'R$ 15.000 – R$ 30.000', 'R$ 30.000 – R$ 50.000', 'Acima de R$ 50.000'],
+      waMessage: 'Olá! Gostaria de solicitar uma simulação de crédito:',
       submitWhatsApp: 'Enviar pelo WhatsApp',
     },
     footer: {
@@ -227,6 +228,7 @@ export const t = {
       },
       loanTypes: ['Personal Loan', 'Payroll Credit', 'Refinancing', 'FGTS Advance', 'Consortium', 'Other'],
       loanAmounts: ['Up to R$ 5,000', 'R$ 5,000 – R$ 15,000', 'R$ 15,000 – R$ 30,000', 'R$ 30,000 – R$ 50,000', 'Above R$ 50,000'],
+      waMessage: 'Hello! I would like to request a credit simulation:',
       submitWhatsApp: 'Send via WhatsApp',
     },
     footer: {
