@@ -44,7 +44,7 @@ export default function Hero() {
               </svg>
             </a>
             <a
-              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Olá! Tenho interesse em crédito e gostaria de mais informações.')}`}
+              href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(T.hero.waText)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-green-600/20 hover:bg-green-600/30 border border-green-600/40 text-green-400 font-bold text-base px-8 py-4 rounded-xl transition-colors"

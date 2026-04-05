@@ -18,6 +18,7 @@ export const t = {
       sub: 'Realizamos o seu sonho com as melhores taxas do mercado. Atendimento personalizado, sem burocracia e com total segurança para você e sua família.',
       cta1: 'Simular agora',
       cta2: 'Falar no WhatsApp',
+      waText: 'Olá! Tenho interesse em crédito e gostaria de mais informações.',
       trust: ['100% Seguro', 'Aprovação Rápida', 'Menores Taxas', 'Sem Burocracia'],
     },
     services: {
@@ -110,13 +111,7 @@ export const t = {
       loanTypes: ['Empréstimo Pessoal', 'Crédito Consignado', 'Refinanciamento', 'Antecipação FGTS', 'Consórcio', 'Outro'],
       loanAmounts: ['Até R$ 5.000', 'R$ 5.000 – R$ 15.000', 'R$ 15.000 – R$ 30.000', 'R$ 30.000 – R$ 50.000', 'Acima de R$ 50.000'],
       waMessage: 'Olá! Gostaria de solicitar uma simulação de crédito:',
-      submitEmail: 'Enviar por E-mail',
       submitWhatsApp: 'Enviar pelo WhatsApp',
-      sending: 'Enviando...',
-      successTitle: 'Solicitação enviada!',
-      successBody: 'Recebemos seus dados e entraremos em contato em breve.',
-      successReset: 'Enviar outra solicitação',
-      error: 'Ocorreu um erro ao enviar. Tente pelo WhatsApp abaixo.',
     },
     footer: {
       description: 'Especialistas em soluções de crédito personalizadas. Transparência, agilidade e as melhores taxas do mercado.',
@@ -147,6 +142,7 @@ export const t = {
       sub: 'We make your dreams come true with the best rates on the market. Personalized service, no red tape, and complete security for you and your family.',
       cta1: 'Simulate now',
       cta2: 'Chat on WhatsApp',
+      waText: 'Hello! I am interested in credit and would like more information.',
       trust: ['100% Secure', 'Fast Approval', 'Best Rates', 'No Red Tape'],
     },
     services: {
@@ -239,13 +235,7 @@ export const t = {
       loanTypes: ['Personal Loan', 'Payroll Credit', 'Refinancing', 'FGTS Advance', 'Consortium', 'Other'],
       loanAmounts: ['Up to R$ 5,000', 'R$ 5,000 – R$ 15,000', 'R$ 15,000 – R$ 30,000', 'R$ 30,000 – R$ 50,000', 'Above R$ 50,000'],
       waMessage: 'Hello! I would like to request a credit simulation:',
-      submitEmail: 'Send by Email',
       submitWhatsApp: 'Send via WhatsApp',
-      sending: 'Sending...',
-      successTitle: 'Request sent!',
-      successBody: 'We received your details and will be in touch shortly.',
-      successReset: 'Send another request',
-      error: 'An error occurred. Please try via WhatsApp below.',
     },
     footer: {
       description: 'Specialists in personalized credit solutions. Transparency, agility, and the best rates on the market.',
