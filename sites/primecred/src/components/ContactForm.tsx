@@ -8,13 +8,12 @@ const WA_NUMBER = '5522988449328'
 interface FormData {
   name: string
   phone: string
-  email: string
   loanType: string
   amount: string
   message: string
 }
 
-const emptyForm: FormData = { name: '', phone: '', email: '', loanType: '', amount: '', message: '' }
+const emptyForm: FormData = { name: '', phone: '', loanType: '', amount: '', message: '' }
 
 export default function ContactForm() {
   const { T } = useLang()
@@ -34,7 +33,6 @@ export default function ContactForm() {
       `*Nome:* ${form.name}`,
       `*Tel:* ${form.phone}`,
     ]
-    if (form.email) lines.push(`*E-mail:* ${form.email}`)
     lines.push(`*Tipo:* ${form.loanType}`)
     lines.push(`*Valor:* ${form.amount}`)
     if (form.message) lines.push(`*Obs:* ${form.message}`)
@@ -75,10 +73,6 @@ export default function ContactForm() {
                   <input id="phone" type="tel" placeholder={T.contact.fields.phonePlaceholder} value={form.phone} onChange={set('phone')} className={inputClass} />
                 </Field>
               </div>
-
-              <Field label={T.contact.fields.email} id="email">
-                <input id="email" type="email" placeholder={T.contact.fields.emailPlaceholder} value={form.email} onChange={set('email')} className={inputClass} />
-              </Field>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Field label={T.contact.fields.loanType} id="loanType">
