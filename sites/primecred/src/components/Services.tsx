@@ -18,7 +18,7 @@ export default function Services() {
           <p className="mt-4 text-slate-400 max-w-xl mx-auto">{T.services.sub}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {T.services.items.map((s) => (
             <div
               key={s.title}

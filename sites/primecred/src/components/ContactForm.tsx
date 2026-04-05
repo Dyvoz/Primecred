@@ -48,17 +48,17 @@ export default function ContactForm() {
 
   const handleWhatsApp = () => {
     if (!isValid) return
-    const text = [
+    const lines = [
       T.contact.waMessage,
       '',
-      `👤 *${T.contact.fields.name.replace(' *', '')}:* ${form.name}`,
-      `📞 *${T.contact.fields.phone.replace(' *', '')}:* ${form.phone}`,
-      form.email ? `📧 *${T.contact.fields.email}:* ${form.email}` : null,
-      `💳 *${T.contact.fields.loanType.replace(' *', '')}:* ${form.loanType}`,
-      `💰 *${T.contact.fields.amount.replace(' *', '')}:* ${form.amount}`,
-      form.message ? `💬 *${T.contact.fields.message.replace(' (opcional)', '').replace(' (optional)', '')}:* ${form.message}` : null,
-    ].filter(Boolean).join('\n')
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer')
+      `👤 *Nome:* ${form.name}`,
+      `📞 *Telefone:* ${form.phone}`,
+    ]
+    if (form.email) lines.push(`📧 *E-mail:* ${form.email}`)
+    lines.push(`💳 *Tipo de crédito:* ${form.loanType}`)
+    lines.push(`💰 *Valor desejado:* ${form.amount}`)
+    if (form.message) lines.push(`💬 *Mensagem:* ${form.message}`)
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer')
   }
 
   return (
