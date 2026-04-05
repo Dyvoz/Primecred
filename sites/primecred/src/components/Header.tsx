@@ -89,7 +89,7 @@ export default function Header() {
 
           {/* Language toggle mobile */}
           <div className="flex items-center gap-2">
-            <span className="text-slate-500 text-xs">Language:</span>
+            <span className="text-slate-500 text-xs">{T.header.language}</span>
             <div className="flex items-center bg-slate-800 rounded-full p-0.5 text-xs font-bold">
               <button
                 onClick={() => setLang('pt')}
