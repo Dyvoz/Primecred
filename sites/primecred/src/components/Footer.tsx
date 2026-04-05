@@ -1,6 +1,11 @@
+'use client'
+
+import { useLang } from '@/contexts/LanguageContext'
+
 const WA_NUMBER = '5522988449328'
 
 export default function Footer() {
+  const { T } = useLang()
   const year = new Date().getFullYear()
 
   return (
@@ -13,8 +18,7 @@ export default function Footer() {
               Prime<span className="text-amber-400">Cred</span>
             </span>
             <p className="mt-4 text-slate-400 text-sm leading-relaxed">
-              Especialistas em soluções de crédito personalizadas. Transparência,
-              agilidade e as melhores taxas do mercado.
+              {T.footer.description}
             </p>
             {/* Social links */}
             <div className="flex gap-4 mt-6">
@@ -41,20 +45,15 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Navegação</h4>
+            <h4 className="text-white font-semibold mb-4">{T.footer.nav}</h4>
             <ul className="flex flex-col gap-2">
-              {[
-                { label: 'Início', href: '#inicio' },
-                { label: 'Serviços', href: '#servicos' },
-                { label: 'Como Funciona', href: '#como-funciona' },
-                { label: 'Solicitar Crédito', href: '#contato' },
-              ].map((l) => (
-                <li key={l.href}>
+              {T.footer.navLinks.map((label, i) => (
+                <li key={T.footer.navHrefs[i]}>
                   <a
-                    href={l.href}
+                    href={T.footer.navHrefs[i]}
                     className="text-slate-400 hover:text-amber-400 text-sm transition-colors"
                   >
-                    {l.label}
+                    {label}
                   </a>
                 </li>
               ))}
@@ -63,7 +62,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Contato</h4>
+            <h4 className="text-white font-semibold mb-4">{T.footer.contact}</h4>
             <ul className="flex flex-col gap-3">
               <li>
                 <a
@@ -93,7 +92,7 @@ export default function Footer() {
               href="#contato"
               className="mt-6 inline-flex items-center justify-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm px-5 py-2.5 rounded-xl transition-colors"
             >
-              Solicitar crédito
+              {T.footer.cta}
             </a>
           </div>
         </div>
@@ -101,10 +100,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-10 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 text-xs">
-            © {year} PrimeCred. Todos os direitos reservados.
+            © {year} PrimeCred. {T.footer.rights}
           </p>
           <p className="text-slate-600 text-xs">
-            As condições de crédito estão sujeitas à análise e aprovação.
+            {T.footer.disclaimer}
           </p>
         </div>
       </div>
