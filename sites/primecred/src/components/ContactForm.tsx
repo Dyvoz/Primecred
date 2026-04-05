@@ -27,15 +27,16 @@ export default function ContactForm() {
 
   const handleWhatsApp = () => {
     if (!isValid) return
+    const f = T.contact.fields
     const lines = [
-      'Olá! Gostaria de solicitar uma simulação de crédito.',
+      T.contact.waMessage,
       '',
-      `*Nome:* ${form.name}`,
-      `*Tel:* ${form.phone}`,
+      `👤 *${f.name}:* ${form.name}`,
+      `📞 *${f.phone}:* ${form.phone}`,
+      `💳 *${f.loanType}:* ${form.loanType}`,
+      `💰 *${f.amount}:* ${form.amount}`,
     ]
-    lines.push(`*Tipo:* ${form.loanType}`)
-    lines.push(`*Valor:* ${form.amount}`)
-    if (form.message) lines.push(`*Obs:* ${form.message}`)
+    if (form.message) lines.push(`💬 *${f.message}:* ${form.message}`)
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank', 'noopener,noreferrer')
   }
 
