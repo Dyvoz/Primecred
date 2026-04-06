@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-950 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
             <span className="text-2xl font-bold text-white tracking-tight">
@@ -55,6 +55,19 @@ export default function Footer() {
                   >
                     {label}
                   </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Address */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">{T.footer.address}</h4>
+            <ul className="flex flex-col gap-1">
+              {T.footer.addressLines.map((line, i) => (
+                <li key={i} className="flex items-start gap-2 text-slate-400 text-sm">
+                  {i === 0 ? <MapPinIcon /> : <span className="w-4 shrink-0" />}
+                  {line}
                 </li>
               ))}
             </ul>
@@ -108,6 +121,14 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  )
+}
+
+function MapPinIcon() {
+  return (
+    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
+    </svg>
   )
 }
 
